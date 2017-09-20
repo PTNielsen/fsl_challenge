@@ -3,7 +3,7 @@ let webpack = require('webpack');
 module.exports = {
   context: __dirname,
   devtool: "inline_sourcemap",
-  entry: "./app/client/js/index.js",
+  entry: "./client/js/index.js",
   output: {
     path: __dirname + "/public/static",
     filename: "index.min.js"
