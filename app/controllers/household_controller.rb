@@ -1,17 +1,12 @@
 class HouseholdController < ActionController::API
-  def index
-    render json: Household.all
-  end
-
   def create
     household = Household.new(household_params)
 
     if household.save
+      render json: household.id.to_json, status: :created
     else
+      render nothing: true, status: :unprocessable_entity
     end
-  end
-
-  def edit
   end
 
   private

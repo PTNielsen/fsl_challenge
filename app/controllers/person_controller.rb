@@ -1,21 +1,11 @@
 class PersonController < ActionController::API
-  def index
-    render json: Person.all
-  end
-
   def create
     person = Person.new(person_params)
 
     if person.save
+      render json: person, status: :created
     else
-    end
-  end
-
-  def edit
-    person = Person.find(params[:id])
-
-    if person.update_attributes(person_params)
-    else
+      render nothing: true, status: :unprocessable_entity
     end
   end
 

@@ -1,21 +1,11 @@
 class VehicleController < ActionController::API
-  def index
-    render json: Vehicle.all
-  end
-
   def create
     vehicle = Vehicle.new(vehicle_params)
 
     if vehicle.save
+      render json: vehicle, status: :created
     else
-    end
-  end
-
-  def edit
-    vehicle = Vehicle.find(params[:id])
-
-    if vehicle.update_attributes(vehicle_params)
-    else
+      render nothing: true, status: :unprocessable_entity
     end
   end
 
