@@ -69,7 +69,7 @@ export default class VehicleForm extends React.Component {
       if (response.ok) {
         this.changePage(this.props.nextPage);
       } else {
-        throw new Error();
+        throw new Error("Vehicle not created");
       }
     }).catch( (error) => {
       console.log(error);
