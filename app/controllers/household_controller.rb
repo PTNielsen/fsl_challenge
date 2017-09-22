@@ -10,7 +10,7 @@ class HouseholdController < ActionController::API
   end
 
   def residents
-    residents = Household.find(params[:id]).residents
+    residents = Household.includes(:residents).find(params[:id]).residents
 
     render json: residents.as_json(only: [:id, :first_name, :last_name])
   end
