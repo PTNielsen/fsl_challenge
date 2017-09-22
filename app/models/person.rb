@@ -3,7 +3,7 @@ class Person < ActiveRecord::Base
   has_many :vehicles, foreign_key: :owner_id
 
   EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :email, uniqueness: { case_sensitive: false }, format: {with: EMAIL_REGEX, message: 'email format is not valid'}
+  validates :email, uniqueness: { case_sensitive: false }, format: {with: EMAIL_REGEX, message: 'format is not valid'}
 
   before_save :downcase_email
 
