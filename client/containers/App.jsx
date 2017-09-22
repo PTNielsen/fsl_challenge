@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 
 import WizardBox from '../components/WizardBox.jsx'
 import * as ACTIONS from '../actions/wizardActions.js';
+require('../stylesheets/Main.scss');
 
 class App extends React.Component {
   constructor() {
@@ -12,11 +13,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <section>
-        <WizardBox 
-          wizard={this.props.wizard}
-          actions={this.props.actions} />
-      </section>
+      <WizardBox 
+        wizard={this.props.wizard}
+        actions={this.props.actions} />
     )
   }
 }
