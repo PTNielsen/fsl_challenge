@@ -42,7 +42,7 @@ export default class PersonForm extends React.Component {
               <option value='other'>Other</option>
           </select>
 
-        <button type='button' onClick={this._handleSubmit.bind(this)}>Next</button>
+          <button type='button' onClick={this._handleSubmit.bind(this)}>Next</button>
         </form>
       </div>
     )
