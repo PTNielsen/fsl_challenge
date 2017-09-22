@@ -6,7 +6,7 @@ class Household < ActiveRecord::Base
     def summary_data id
       household = includes(residents: :vehicles).find(id)
       
-      return household.as_json(include: {residents: {include: :vehicles}})
+      return household.as_json(root: true, include: {residents: {include: :vehicles}})
     end
   end
 end
