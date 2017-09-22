@@ -69,8 +69,6 @@ export default class HouseholdForm extends React.Component {
   }
 
   _packageParams() {
-    const refs = this.refs
-
     return {
       "household": {
         "address_1": this.address1.value,
