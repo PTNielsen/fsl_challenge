@@ -29,15 +29,13 @@ export default class VehicleForm extends React.Component {
           </select>
         </form>
 
-        <button onClick={this._handleSubmit.bind(this)}>Next</button>
-        <button onClick={this._newForm.bind(this)}>Add Another</button>
+        <button type='button' onClick={this._handleSubmit.bind(this)}>Next</button>
+        <button type='button' onClick={this._newForm.bind(this)}>Add Another</button>
       </div>
     )
   }
 
-  _handleSubmit(event) {
-    event.preventDefault();
-
+  _handleSubmit() {
     fetch('/vehicle', {
       method: 'POST',
       headers: {

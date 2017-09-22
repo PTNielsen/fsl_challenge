@@ -19,14 +19,12 @@ export default class HouseholdForm extends React.Component {
           <input type='number' id='bedroom_count' ref='bedroom_count' placeholder='Bedroom Count' required></input>
         </form>
 
-        <button onClick={this._handleSubmit.bind(this)}>Next</button>
+        <button type='button' onClick={this._handleSubmit.bind(this)}>Next</button>
       </div>
     )
   }
 
-  _handleSubmit(event) {
-    event.preventDefault();
-
+  _handleSubmit() {
     fetch('/household', {
       method: 'POST',
       headers: {
