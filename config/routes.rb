@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :person, :vehicle, only: [:create]
   resources :household, only: [:create] do
-    get 'summary', on: :member
+    get 'summary',   on: :member
+    get 'residents', on: :member
   end
 end
