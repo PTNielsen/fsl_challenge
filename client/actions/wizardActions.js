@@ -1,15 +1,15 @@
-import * as types from '../constants/ActionTypes'
+import * as ACTIONS from '../constants/ActionTypes'
 
 export const changePage = (page) => {
   return {
-    type: types.CHANGE_PAGE,
+    type: ACTIONS.CHANGE_PAGE,
     payload: page
   }
 }
 
 export const setHouseholdId = (id) => {
   return {
-    type: types.SET_HOUSEHOLD_ID,
+    type: ACTIONS.SET_HOUSEHOLD_ID,
     payload: id
   }
 }

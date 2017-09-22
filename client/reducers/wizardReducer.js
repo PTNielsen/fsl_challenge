@@ -1,3 +1,4 @@
+import * as ACTIONS from '../actions/wizardActions.js';
 import * as PAGES from '../constants/PageTypes.js';
 
 const initialState = {
@@ -7,11 +8,11 @@ const initialState = {
 
 const wizardReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'CHANGE_PAGE':
+    case ACTIONS.CHANGE_PAGE:
       return Object.assign({}, state, {
         page: action.payload
       });
-    case 'SET_HOUSEHOLD_ID':
+    case ACTIONS.SET_HOUSEHOLD_ID:
       return Object.assign({}, state, {
         householdId: action.payload
       });

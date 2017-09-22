@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import WizardBox from '../components/WizardBox.jsx'
-import * as WizardActions from '../actions/wizardActions.js';
+import * as ACTIONS from '../actions/wizardActions.js';
 
 class App extends React.Component {
   constructor() {
@@ -29,7 +29,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators(WizardActions, dispatch)
+    actions: bindActionCreators(ACTIONS, dispatch)
   }
 }
 
