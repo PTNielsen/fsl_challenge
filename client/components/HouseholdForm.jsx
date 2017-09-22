@@ -61,7 +61,7 @@ export default class HouseholdForm extends React.Component {
       } else {
         throw new Error("Household not created");
       }
-    }).then( (json) => {     
+    }).then( (json) => {
       this.setHouseholdId(json);
     }).catch( (error) => {
       console.log(error);
