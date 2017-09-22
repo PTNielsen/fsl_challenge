@@ -8,6 +8,6 @@ class Vehicle < ActiveRecord::Base
   private
 
   def format_license_plate
-    self.license_plate = self.license_plate.gsub(/\W/i, '').downcase
+    self.license_plate = self.license_plate.gsub(/\W|_/i, '').downcase
   end
 end
