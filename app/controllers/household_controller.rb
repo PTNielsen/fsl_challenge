@@ -24,6 +24,6 @@ class HouseholdController < ActionController::API
   private
 
   def household_params
-    params.require(:household).permit(:address_1, :address_2, :city, :state, :bedroom_count)
+    params.require(:household).permit(:address_1, :address_2, :city, :state, :zip, :bedroom_count)
   end
 end
