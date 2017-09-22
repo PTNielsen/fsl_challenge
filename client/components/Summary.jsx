@@ -6,7 +6,8 @@ export default class Summary extends React.Component {
     super();
 
     this.state = {
-      summary: {}
+      summary: {},
+      isLoading: true
     }
   }
 
@@ -15,8 +16,10 @@ export default class Summary extends React.Component {
   }
 
   render() {
-    return(
-      <h1>Summary!</h1>
+    return (
+      <section id="summary">
+        {!this.state.isLoading && this._formatSummary()}
+      </section>
     )
   }
 
@@ -36,9 +39,48 @@ export default class Summary extends React.Component {
         throw new Error();
       }
     }).then( (jsonData) => {
-      this.setState({summary: jsonData});
+      this.setState({
+        summary: jsonData,
+        isLoading: false
+      });
     }).catch( (error) => {
       console.log('Error: ', error);
     });
   }
-}
+
+  _formatSummary() {
+    const household = this.state.summary.household
+
+    return (
+      <div>
+        <h2>Household Summary</h2>
+        <div className="summary-data">
+          <p>{household.address_1} - {household.address_2}</p>
+          <p>{household.city}, {household.state}  {household.zip}</p>
+          <p>{household.bedroom_count} Bedroom(s)</p>
+        </div>
+        <h4>Residents</h4>
+        <div>
+          {household.residents.map( (r) => {
+            return (<div key={r.id}>
+              <p>{r.first_name} {r.last_name}</p>
+              <p>{r.email}</p>
+              <p id="gender">{r.gender}</p>
+              <div id="vehicle">
+                <h4>Vehicles</h4>
+                {r.vehicles.map( (v) => {
+                  return (<div key={v.id}>
+                    <p>{v.make}</p>
+                    <p>{v.model}</p>
+                    <p>{v.year}</p>
+                    <p id="license">{v.license_plate}</p>
+                  </div>)
+                })}
+              </div>
+            </div>)
+          })}
+        </div>
+      </div>
+    )
+  }  
+} 

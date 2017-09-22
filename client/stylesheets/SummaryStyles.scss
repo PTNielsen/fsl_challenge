@@ -1,3 +1,16 @@
-h1 {
-  border: 5px solid red;
+#summary {
+  font-family: Arial;
+  padding-left: 20px;
+}
+
+#license {
+  text-transform: uppercase;
+}
+
+#gender {
+  text-transform: capitalize;
+}
+
+#vehicle {
+  padding-left: 10px;
 }
