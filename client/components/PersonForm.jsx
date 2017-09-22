@@ -12,14 +12,30 @@ export default class PersonForm extends React.Component {
     return(
       <div>
         <form id='person_form'>
-          <input type='text' id='first_name' ref='first_name' placeholder='First Name' required></input>
-          <input type='text' id="last_name" ref='last_name' placeholder='Last Name' required></input>
-          <input type='text' id="email" ref='email' placeholder='Email' required></input>
+          <input
+            type='text'
+            id='first_name'
+            ref={ input => { this.firstName = input } }
+            placeholder='First Name'
+            autoFocus></input>
+          <input
+            type='text'
+            id="last_name"
+            ref={ input => { this.lastName = input } }
+            placeholder='Last Name'></input>
+          <input
+            type='text'
+            id="email"
+            ref={ input => { this.email = input } }
+            placeholder='Email'></input>
 
-          <select id='gender' name='gender' ref='gender'>
-            <option value='male'>Male</option>
-            <option value='female'>Female</option>
-            <option value='other'>Other</option>
+          <select
+            id='gender'
+            name='gender'
+            ref={ input => { this.gender = input } }>
+              <option value='male'>Male</option>
+              <option value='female'>Female</option>
+              <option value='other'>Other</option>
           </select>
         </form>
 
@@ -53,15 +69,14 @@ export default class PersonForm extends React.Component {
   }
 
   _packageParams() {
-    const refs = this.refs
-    const id   = this.props.householdId
+    const id = this.props.householdId
 
     return {
       "person": {
-        "first_name": refs.first_name.value,
-        "last_name": refs.last_name.value,
-        "email": refs.email.value,
-        "gender": refs.gender.value,
+        "first_name": this.firstName.value,
+        "last_name": this.lastName.value,
+        "email": this.email.value,
+        "gender": this.gender.value,
         "household_id": id
       }
     }

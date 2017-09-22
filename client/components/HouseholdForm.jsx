@@ -13,11 +13,32 @@ export default class HouseholdForm extends React.Component {
     return(
       <div>
         <form id='household_form'>
-          <input type='text' id='address_1' ref='address_1' placeholder='Address 1' required></input>
-          <input type='text' id='address_2' ref='address_2' placeholder='Address 2' required></input>
-          <input type='text' id='city' ref='city' placeholder='City' required></input>
-          <input type='text' id='state' ref='state' placeholder='State' required></input>
-          <input type='number' id='bedroom_count' ref='bedroom_count' placeholder='Bedroom Count' required></input>
+          <input
+            type='text'
+            id='address_1'
+            ref={ input => { this.address1 = input } }
+            placeholder='Address 1'
+            autoFocus></input>
+          <input
+            type='text'
+            id='address_2'
+            ref={ input => { this.address2 = input } }
+            placeholder='Address 2'></input>
+          <input
+            type='text'
+            id='city'
+            ref={ input => { this.city = input } }
+            placeholder='City'></input>
+          <input
+            type='text'
+            id='state'
+            ref={ input => { this.stateString = input } }
+            placeholder='State'></input>
+          <input
+            type='number'
+            id='bedroom_count'
+            ref={ input => { this.bedroomCount = input } }
+            placeholder='Bedroom Count'></input>
         </form>
 
         <button type='button' onClick={this._handleSubmit.bind(this)}>Next</button>
@@ -49,14 +70,14 @@ export default class HouseholdForm extends React.Component {
 
   _packageParams() {
     const refs = this.refs
-    
+
     return {
       "household": {
-        "address_1": refs.address_1.value,
-        "address_2": refs.address_2.value,
-        "city": refs.city.value,
-        "state": refs.state.value,
-        "bedroom_count": refs.bedroom_count.value
+        "address_1": this.address1.value,
+        "address_2": this.address2.value,
+        "city": this.city.value,
+        "state": this.stateString.value,
+        "bedroom_count": this.bedroomCount.value
       }
     }
   }
