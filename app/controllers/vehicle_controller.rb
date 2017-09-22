@@ -5,7 +5,7 @@ class VehicleController < ActionController::API
     if vehicle.save
       render json: vehicle, status: :created
     else
-      render nothing: true, status: :unprocessable_entity
+      render json: { errors: vehicle.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

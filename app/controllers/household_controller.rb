@@ -5,7 +5,7 @@ class HouseholdController < ActionController::API
     if household.save
       render json: household.id.to_json, status: :created
     else
-      render nothing: true, status: :unprocessable_entity
+      render json: { errors: household.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

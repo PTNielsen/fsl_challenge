@@ -5,7 +5,7 @@ class PersonController < ActionController::API
     if person.save
       render json: person, status: :created
     else
-      render nothing: true, status: :unprocessable_entity
+      render json: { errors: person.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
