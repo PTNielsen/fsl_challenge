@@ -9,24 +9,17 @@ export default class VehicleForm extends React.Component {
   
   render() {
     return(
-      <section>
+      <div>
         <form id='household_form'>
-          <label htmlFor='make'>Make: </label>
           <input type='text' id='make' ref='make' placeholder='Make' required></input>
-
-          <label htmlFor='model'>Model: </label>
           <input type='text' id='model' ref='model' placeholder='Model' required></input>
-
-          <label htmlFor='year'>Year: </label>
           <input type='number' id='year' ref='year' placeholder='Year' required min='1900' max='2017'></input>
-
-          <label htmlFor='license_plate'>License Plate: </label>
           <input type='text' id="license_plate" ref='license_plate' placeholder='License Plate' required></input>
         </form>
 
         <button onClick={this._handleSubmit.bind(this)}>Next</button>
         <button onClick={this._newForm.bind(this)}>Add Another</button>
-      </section>
+      </div>
     )
   }
 
@@ -40,8 +33,12 @@ export default class VehicleForm extends React.Component {
         'Accepts': 'application/json',
       },
       body: JSON.stringify(this._packageParams())
-    }).then( (response) => {;
-      this.changePage(this.props.nextPage);
+    }).then( (response) => {
+      if (response.ok) {
+        this.changePage(this.props.nextPage);
+      } else {
+        throw new Error("Vehicle not created");
+      }
     }).catch( (error) => {
       console.log('Oh no something went wrong in the fetch post call');
     })

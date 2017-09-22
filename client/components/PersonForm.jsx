@@ -9,18 +9,12 @@ export default class PersonForm extends React.Component {
   
   render() {
     return(
-      <section>
+      <div>
         <form id='person_form'>
-          <label htmlFor='first_name'>First Name: </label>
           <input type='text' id='first_name' ref='first_name' placeholder='First Name' required></input>
-
-          <label htmlFor='last_name'>Last Name: </label>
           <input type='text' id="last_name" ref='last_name' placeholder='Last Name' required></input>
-
-          <label htmlFor='email'>Email: </label>
           <input type='text' id="email" ref='email' placeholder='Email' required></input>
 
-          <label htmlFor='gender'>Gender</label>
           <select id='gender' name='gender' ref='gender'>
             <option value='male'>Male</option>
             <option value='female'>Female</option>
@@ -30,7 +24,7 @@ export default class PersonForm extends React.Component {
 
         <button onClick={this._handleSubmit.bind(this)}>Next</button>
         <button onClick={this._newForm.bind(this)}>Add Another</button>
-      </section>
+      </div>
     )
   }
 
@@ -44,12 +38,14 @@ export default class PersonForm extends React.Component {
         'Accepts': 'application/json',
       },
       body: JSON.stringify(this._packageParams())
-    }).then( (response) => {;
-      return response.json();
     }).then( (response) => {
-      this.changePage(this.props.nextPage);
+      if (response.ok) {
+        this.changePage(this.props.nextPage);
+      } else {
+        throw new Error("Person not created");
+      }
     }).catch( (error) => {
-      console.log('Error: ', error);
+      console.log(error);
     })
   }
 

@@ -10,26 +10,17 @@ export default class HouseholdForm extends React.Component {
   
   render() {
     return(
-      <section>
+      <div>
         <form id='household_form'>
-          <label htmlFor='address_1'>Address 1: </label>
           <input type='text' id='address_1' ref='address_1' placeholder='Address 1' required></input>
-
-          <label htmlFor='address_2'>Address 2: </label>
           <input type='text' id='address_2' ref='address_2' placeholder='Address 2' required></input>
-
-          <label htmlFor='city'>City: </label>
           <input type='text' id='city' ref='city' placeholder='City' required></input>
-
-          <label htmlFor='state'>State: </label>
           <input type='text' id='state' ref='state' placeholder='State' required></input>
-
-          <label htmlFor='bedroom_count'>Bedroom Count: </label>
           <input type='number' id='bedroom_count' ref='bedroom_count' placeholder='Bedroom Count' required></input>
         </form>
 
         <button onClick={this._handleSubmit.bind(this)}>Next</button>
-      </section>
+      </div>
     )
   }
 
@@ -44,12 +35,16 @@ export default class HouseholdForm extends React.Component {
       },
       body: JSON.stringify(this._packageParams())
     }).then( (response) => {;
-      return response.json();
-    }).then( (json) => {
+      if (response.ok) {
+        this.changePage(this.props.nextPage);
+        return response.json();
+      } else {
+        throw new Error("Household not created");
+      }
+    }).then( (json) => {     
       this.setHouseholdId(json);
-      this.changePage(this.props.nextPage);
     }).catch( (error) => {
-      console.log('Oh no something went wrong in the fetch post call');
+      console.log(error);
     })
   }
 
