@@ -52,7 +52,6 @@ export default class VehicleForm extends React.Component {
         </form>
 
         <button type='button' onClick={this._handleSubmit.bind(this)}>Next</button>
-        <button type='button' onClick={this._newForm.bind(this)}>Add Another</button>
       </div>
     )
   }
@@ -97,11 +96,6 @@ export default class VehicleForm extends React.Component {
       console.log(error);
     })
   }
-
-  _newForm() {
-    console.log('Vehicle New Form');
-  }
-
   _packageParams() {
     return {
       "vehicle": {

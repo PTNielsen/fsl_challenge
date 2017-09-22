@@ -40,7 +40,6 @@ export default class PersonForm extends React.Component {
         </form>
 
         <button type='button' onClick={this._handleSubmit.bind(this)}>Next</button>
-        <button type='button' onClick={this._newForm.bind(this)}>Add Another</button>
       </div>
     )
   }
@@ -62,10 +61,6 @@ export default class PersonForm extends React.Component {
     }).catch( (error) => {
       console.log(error);
     })
-  }
-
-  _newForm() {
-    console.log('Person New Form');
   }
 
   _packageParams() {
