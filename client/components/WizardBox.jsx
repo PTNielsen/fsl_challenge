@@ -8,7 +8,7 @@ import * as PAGES from '../constants/PageTypes.js';
 export default class WizardBox extends React.Component {
   render() {
     const { wizard, actions } = this.props;
-    const component = this._determinePage(wizard.page, actions);
+    const component = this._determinePage(wizard, actions);
 
     return (
       <section>
@@ -17,8 +17,8 @@ export default class WizardBox extends React.Component {
     )
   }
 
-  _determinePage(page, actions) {
-    switch (page) {
+  _determinePage(wizard, actions) {
+    switch (wizard.page) {
       case (PAGES.HOUSEHOLD_PAGE):
         return <HouseholdForm
           actions={actions}
@@ -27,31 +27,14 @@ export default class WizardBox extends React.Component {
         return <PersonForm
           actions={actions}
           nextPage={PAGES.VEHICLE_PAGE}
-          householdId={this.props.wizard.householdId} />;
+          householdId={wizard.householdId} />;
       case (PAGES.VEHICLE_PAGE):
         return <VehicleForm
           actions={actions}
-          nextPage={PAGES.SUMMARY_PAGE} />;
+          nextPage={PAGES.SUMMARY_PAGE} 
+          householdId={wizard.householdId} />;
       case (PAGES.SUMMARY_PAGE):
-        return <Summary summary={this._getSummaryData()}/>;
+        return <Summary householdId={wizard.householdId}/>;
     }
-  }
-
-  _getSummaryData() {
-    const householdId = this.props.wizard.householdId;
-
-    fetch(`/household/${householdId}/summary`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accepts': 'application/json',
-      }
-    }).then( (response) => {
-      return response.json();
-    }).then( (jsonData) => {
-      console.log(jsonData);
-    }).catch( (error) => {
-      console.log('Error: ', error);
-    });
   }
 }
