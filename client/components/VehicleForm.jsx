@@ -5,8 +5,15 @@ export default class VehicleForm extends React.Component {
     super(props);
     
     this.changePage = props.actions.changePage;
+    this.state = {
+      residents: []
+    }
   }
   
+  componentWillMount() {
+    this._getResidents();
+  }
+
   render() {
     return(
       <div>
@@ -15,6 +22,11 @@ export default class VehicleForm extends React.Component {
           <input type='text' id='model' ref='model' placeholder='Model' required></input>
           <input type='number' id='year' ref='year' placeholder='Year' required min='1900' max='2017'></input>
           <input type='text' id="license_plate" ref='license_plate' placeholder='License Plate' required></input>
+          <select id='owner_id' name='owner_id' ref='owner_id'>
+            {this.state.residents.map( (r) => {
+              return <option key={r.id} value={r.id}>{r.first_name + ' ' + r.last_name}</option>
+            })}
+          </select>
         </form>
 
         <button onClick={this._handleSubmit.bind(this)}>Next</button>
@@ -37,10 +49,32 @@ export default class VehicleForm extends React.Component {
       if (response.ok) {
         this.changePage(this.props.nextPage);
       } else {
-        throw new Error("Vehicle not created");
+        throw new Error();
       }
     }).catch( (error) => {
-      console.log('Oh no something went wrong in the fetch post call');
+      console.log(error);
+    })
+  }
+
+  _getResidents() {
+    const householdId = this.props.householdId;
+    
+    fetch(`/household/${householdId}/residents`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accepts': 'application/json',
+      }
+    }).then( (response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error();
+      }
+    }).then( (jsonData) => {
+      this.setState({residents: jsonData});
+    }).catch( (error) => {
+      console.log(error);
     })
   }
 
@@ -55,7 +89,7 @@ export default class VehicleForm extends React.Component {
         "model": this.refs.model.value,
         "year": this.refs.year.value,
         "license_plate": this.refs.license_plate.value,
-        "owner_id": 1
+        "owner_id": this.refs.owner_id.value
       }
     }
   }
