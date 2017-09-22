@@ -1,4 +1,4 @@
-import * as ACTIONS from '../actions/wizardActions.js';
+import * as ACTIONS from '../constants/ActionTypes.js';
 import { HOUSEHOLD_PAGE } from '../constants/PageTypes.js';
 
 const initialState = {
