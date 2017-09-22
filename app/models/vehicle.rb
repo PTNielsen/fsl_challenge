@@ -3,11 +3,11 @@ class Vehicle < ActiveRecord::Base
 
   validates :license_plate, uniqueness: { case_sensitive: false }
 
-  before_save :downcase_license_plate
+  before_save :format_license_plate
 
   private
 
-  def downcase_license_plate
-    self.license_plate.downcase!
+  def format_license_plate
+    self.license_plate.gsub!(/\W/, '').downcase!
   end
 end
