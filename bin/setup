@@ -30,6 +30,9 @@ chdir APP_ROOT do
   puts "\n== Removing old logs and tempfiles =="
   system! 'bin/rails log:clear tmp:clear'
 
+  puts "\n== Running npm install =="
+  system! 'npm install'
+
   puts "\n== Running webpack =="
   system! 'webpack'
 
