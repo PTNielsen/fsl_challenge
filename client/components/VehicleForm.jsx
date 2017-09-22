@@ -18,29 +18,36 @@ export default class VehicleForm extends React.Component {
   render() {
     return(
       <div>
+        <h1 className="form-header">Your Vehicles</h1>
         <form id='household_form'>
+          <label htmlFor="make">Make</label>
           <input
             type='text'
             id='make'
             ref={ input => { this.make = input } }
-            placeholder='Make'
             autoFocus></input>
+
+          <label htmlFor="model">Model</label>
           <input
             type='text'
             id='model'
-            ref={ input => { this.model = input } }
-            placeholder='Model'></input>
+            ref={ input => { this.model = input } }></input>
+
+          <label htmlFor="year">Year</label>
           <input
             type='number'
             id='year'
             ref={ input => { this.year = input } }
-            placeholder='Year'></input>
+            min='1885'
+            max='2018'></input>
+
+          <label htmlFor="license_plate">License Plate</label>
           <input
             type='text'
             id="license_plate"
-            ref={ input => { this.licensePlate = input } }
-            placeholder='License Plate'></input>
+            ref={ input => { this.licensePlate = input } }></input>
 
+          <label htmlFor="owner_id">Owner</label>
           <select
             id='owner_id'
             name='owner_id'
@@ -49,9 +56,9 @@ export default class VehicleForm extends React.Component {
                 return <option key={r.id} value={r.id}>{r.first_name + ' ' + r.last_name}</option>
               })}
           </select>
-        </form>
 
-        <button type='button' onClick={this._handleSubmit.bind(this)}>Next</button>
+          <button type='button' onClick={this._handleSubmit.bind(this)}>Next</button>
+        </form>
       </div>
     )
   }

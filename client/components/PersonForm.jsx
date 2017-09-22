@@ -11,24 +11,28 @@ export default class PersonForm extends React.Component {
   render() {
     return(
       <div>
+        <h1 className="form-header">You</h1>
         <form id='person_form'>
+          <label htmlFor="first_name">First Name</label>
           <input
             type='text'
             id='first_name'
             ref={ input => { this.firstName = input } }
-            placeholder='First Name'
             autoFocus></input>
+          
+          <label htmlFor="last_name">Last Name</label>
           <input
             type='text'
             id="last_name"
-            ref={ input => { this.lastName = input } }
-            placeholder='Last Name'></input>
+            ref={ input => { this.lastName = input } }></input>
+
+          <label htmlFor="email">Email</label>
           <input
             type='text'
             id="email"
-            ref={ input => { this.email = input } }
-            placeholder='Email'></input>
+            ref={ input => { this.email = input } }></input>
 
+          <label htmlFor="gender">Gender</label>
           <select
             id='gender'
             name='gender'
@@ -37,9 +41,9 @@ export default class PersonForm extends React.Component {
               <option value='female'>Female</option>
               <option value='other'>Other</option>
           </select>
-        </form>
 
         <button type='button' onClick={this._handleSubmit.bind(this)}>Next</button>
+        </form>
       </div>
     )
   }

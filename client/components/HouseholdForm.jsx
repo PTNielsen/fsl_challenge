@@ -12,36 +12,48 @@ export default class HouseholdForm extends React.Component {
   render() {
     return(
       <div>
+        <h1 className="form-header">Your Household</h1>
         <form id='household_form'>
+          <label htmlFor="address_1">Address 1</label>
           <input
             type='text'
             id='address_1'
             ref={ input => { this.address1 = input } }
-            placeholder='Address 1'
             autoFocus></input>
+
+          <label htmlFor="address_2">Address 2</label>
           <input
             type='text'
             id='address_2'
-            ref={ input => { this.address2 = input } }
-            placeholder='Address 2'></input>
+            ref={ input => { this.address2 = input } }></input>
+
+          <label htmlFor="city">City</label>
           <input
             type='text'
             id='city'
-            ref={ input => { this.city = input } }
-            placeholder='City'></input>
+            ref={ input => { this.city = input } }></input>
+
+          <label htmlFor="state">State</label>
           <input
             type='text'
             id='state'
-            ref={ input => { this.stateString = input } }
-            placeholder='State'></input>
+            ref={ input => { this.stateString = input } }></input>
+
+          <label htmlFor="zip">Zip</label>
+          <input
+            type='text'
+            id='city'
+            ref={ input => { this.zip = input } }></input>
+
+          <label htmlFor="bedroom_count">Bedroom Count</label>
           <input
             type='number'
             id='bedroom_count'
             ref={ input => { this.bedroomCount = input } }
-            placeholder='Bedroom Count'></input>
-        </form>
+            min='0'></input>
 
-        <button type='button' onClick={this._handleSubmit.bind(this)}>Next</button>
+          <button type='button' onClick={this._handleSubmit.bind(this)}>Next</button>
+        </form>
       </div>
     )
   }
@@ -75,6 +87,7 @@ export default class HouseholdForm extends React.Component {
         "address_2": this.address2.value,
         "city": this.city.value,
         "state": this.stateString.value,
+        "zip": this.zip.value,
         "bedroom_count": this.bedroomCount.value
       }
     }
