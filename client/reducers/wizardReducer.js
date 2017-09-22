@@ -1,8 +1,8 @@
 import * as ACTIONS from '../actions/wizardActions.js';
-import * as PAGES from '../constants/PageTypes.js';
+import { HOUSEHOLD_PAGE }from '../constants/PageTypes.js';
 
 const initialState = {
-  page: PAGES.HOUSEHOLD_PAGE,
+  page: HOUSEHOLD_PAGE,
   householdId: null
 };
 
