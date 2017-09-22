@@ -11,7 +11,7 @@ export default class WizardBox extends React.Component {
     const component = this._determinePage(wizard, actions);
 
     return (
-      <section>
+      <section id="form-box">
         {component}
       </section>
     )

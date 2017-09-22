@@ -1,4 +1,5 @@
 import React from 'react';
+require('../stylesheets/FormStyles.scss');
 
 export default class HouseholdForm extends React.Component {
   constructor(props) {

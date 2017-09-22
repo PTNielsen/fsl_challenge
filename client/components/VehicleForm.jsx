@@ -1,4 +1,5 @@
 import React from 'react';
+require('../stylesheets/FormStyles.scss');
 
 export default class VehicleForm extends React.Component {
   constructor(props) {

@@ -1,4 +1,5 @@
 import React from 'react';
+require('../stylesheets/SummaryStyles.scss');
 
 export default class Summary extends React.Component {
   constructor() {
