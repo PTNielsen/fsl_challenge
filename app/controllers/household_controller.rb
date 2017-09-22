@@ -9,6 +9,12 @@ class HouseholdController < ActionController::API
     end
   end
 
+  def residents
+    residents = Household.find(params[:id]).residents
+
+    render json: residents.as_json(only: [:id, :first_name, :last_name])
+  end
+
   def summary
     summary_data = Household.summary_data(params[:id])
     
