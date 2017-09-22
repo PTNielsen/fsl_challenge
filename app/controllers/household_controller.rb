@@ -9,6 +9,12 @@ class HouseholdController < ActionController::API
     end
   end
 
+  def summary
+    summary_data = Household.summary_data(params[:id])
+    
+    render json: summary_data
+  end
+
   private
 
   def household_params
