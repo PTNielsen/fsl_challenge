@@ -14,5 +14,5 @@
 !/tmp/.keep
 
 .byebug_history
-public/
+public/static/
 node_modules/
